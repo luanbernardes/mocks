@@ -21,7 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Vitest */
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+
+    /* Simplify imports */
+    "paths": {
+      "@types": ["./src/@types"],
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
