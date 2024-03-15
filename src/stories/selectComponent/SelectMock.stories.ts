@@ -1,40 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { GroupMockDebug } from '@types'
-import SelectMock from '../../components/SelectMock.vue'
+import SelectMock from '../../components/selectMock/SelectMockContainer.vue'
 import SelectMockWrapper from './SelectMockWrapper.vue'
-
-const groupMockDebugsMock: GroupMockDebug[] = [
-  {
-    title: 'TESTE',
-    type: 'request',
-    list: [
-      {
-        title: 'mock-test-MSW',
-        path: '/mock-test-MSW',
-        method: 'get',
-        delay: 1000,
-        type: 'request',
-        options: [
-          {
-            id: 'mock-bill-success',
-            title: 'mock - success',
-            status: 200,
-            data: {
-              test: '123qwe',
-              test2: '456rty'
-            }
-          },
-          {
-            id: 'mock-bill-error',
-            title: 'mock - error 400',
-            status: 400,
-            data: 'error'
-          }
-        ]
-      }
-    ]
-  }
-]
+import { groupMockDebugsMock } from '../../@mocks/groupMockDebugsMock.ts'
 
 const meta = {
   title: 'SelectMock',
