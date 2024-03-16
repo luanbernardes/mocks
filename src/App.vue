@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SelectMockWrapper from './stories/selectComponent/SelectMockWrapper.vue'
 import SelectMockContainer from './components/selectMock/SelectMock.vue'
-import { groupMockDebugsMock } from './config'
+import { groupMockDebugsMock } from '@mocks'
 </script>
 
 <template>
