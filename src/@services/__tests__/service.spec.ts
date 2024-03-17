@@ -6,22 +6,45 @@ import {
   clear,
   getIsActive,
   getListMock,
+  getListMockParsed,
   setActiveMock
 } from '@services'
 
 describe('service', () => {
   describe('getListMock', () => {
-    it('should return parsed', () => {
+    it('should return local storage not parsed', () => {
       localStorage.setItem(ActiveMockService.list, JSON.stringify(true))
       const result = getListMock()
 
-      expect(result).toBeTruthy()
+      expect(result).toEqual('true')
+      expect(typeof result).toEqual('string')
     })
 
-    it('should return empty object when not can get', () => {
+    it('should return null object when not can get value', () => {
       localStorage.removeItem(ActiveMockService.list)
 
       const result = getListMock()
+
+      expect(result).toEqual(null)
+    })
+  })
+
+  describe('getListMockParsed', () => {
+    it('should return local storage parsed', () => {
+      localStorage.setItem(
+        ActiveMockService.list,
+        JSON.stringify({ test: 'foo' })
+      )
+      const result = getListMockParsed()
+
+      expect(result).toEqual({ test: 'foo' })
+      expect(typeof result).toEqual('object')
+    })
+
+    it('should return empty object when not can get value', () => {
+      localStorage.removeItem(ActiveMockService.list)
+
+      const result = getListMockParsed()
 
       expect(result).toEqual({})
     })

@@ -20,7 +20,7 @@ export function getListMockParsed() {
 
     return JSON.parse(list || '{}')
   } catch (error) {
-    console.log('getListMockParsed error', error)
+    console.error('getListMockParsed error', error)
     return {}
   }
 }
