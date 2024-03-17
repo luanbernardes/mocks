@@ -29,28 +29,32 @@ export function createHandler(groupMockDebugs: GroupMockDebug[]) {
   const allHandlers: any = []
 
   activeMocksArr.forEach(([key, value]) => {
-    const findGroup = groupMockDebugs.find((group) => group.title === key)
-    if (findGroup) {
-      const findList = findGroup.list.find(
-        (mock) => mock.title === value.mockTitle
-      )
-      if (findList) {
-        const findOption = findList.options.find((v) => {
-          return v.id === value.optionSelected
-        })
-        if (findOption) {
-          allHandlers.push(
-            createRestHandler(
-              findOption,
-              findList.method,
-              findList.path,
-              findList.delay
+    const selectGroup = groupMockDebugs.find((group) => group.title === key)
+    if (selectGroup) {
+      const findList = selectGroup.list.filter((mock) => {
+        return !!value[mock.title]
+      })
+      if (findList.length) {
+        findList.forEach((mockDebug) => {
+          const findOption = mockDebug.options.find((v) => {
+            return v.id === value[mockDebug.title].optionSelected
+          })
+          // console.log({ findOption })
+          if (findOption) {
+            allHandlers.push(
+              createRestHandler(
+                findOption,
+                mockDebug.method,
+                mockDebug.path,
+                mockDebug.delay
+              )
             )
-          )
-        }
+          }
+        })
       }
     }
   })
 
+  // console.log(allHandlers)
   return allHandlers
 }

@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { defineProps, onMounted, reactive, ref } from 'vue'
+import { defineProps, ref, onMounted } from 'vue'
 import { GroupMockDebug, localStorageMock } from '@types'
 import { addListMock, clear, getListMock, setActiveMock } from '@services'
 
 const { mockDebugList } = defineProps<{ mockDebugList: GroupMockDebug[] }>()
+let listMock = ref<InstanceType<localStorageMock>>({})
 
-let listMock = ref()
-
-// onMounted(() => {
-//   listMock.value = getListMock()
-//   // console.log(listMock.value)
-// })
+onMounted(() => {
+  listMock.value = JSON.parse(getListMock())
+})
 
 // FUNCTIONS
 const onChange = (e: Event, listTitle, mock) => {
@@ -18,29 +16,35 @@ const onChange = (e: Event, listTitle, mock) => {
   const targetValue = target.value
   const mockTitle = mock.title
   const data = mock.options.find((item) => item.id === targetValue)
-  const newValue: localStorageMock = {
+
+  // TODO update localStorage creat a function?
+  const localStorageValue = {
     ...listMock.value,
     [listTitle]: {
-      mockTitle,
-      optionSelected: targetValue,
-      data: data.data
+      ...listMock.value[listTitle],
+      [mockTitle]: {
+        optionSelected: targetValue,
+        data: data?.data
+      }
     }
   }
-  listMock.value = newValue
-  console.log(newValue)
 
+  // TODO create function delete
   // when select '' remove mock
   if (targetValue === '') {
-    delete newValue[listTitle]
+    delete localStorageValue[listTitle][mockTitle]
   }
 
+  // console.log({ localStorageValue })
+
+  listMock.value = localStorageValue
   setActiveMock()
-  addListMock(newValue as any)
+  addListMock(localStorageValue as any)
 }
 
-const optionSelected = () => {
-  // return listMock.value?.[mockTitle]
-  return ''
+const optionSelected = (listTitle, mockTitle) => {
+  console.log(listMock.value.data, listTitle, mockTitle)
+  return listMock.value[listTitle]?.[mockTitle]?.optionSelected
 }
 
 const reloadPage = () => {
@@ -63,7 +67,7 @@ const onDeactivateAllMocks = () => {
         <br />
 
         <select
-          :value="optionSelected(mock.title)"
+          :value="optionSelected(mockDebugItem.title, mock.title)"
           @change="onChange($event, mockDebugItem.title, mock)"
         >
           <option value="">-</option>
@@ -71,10 +75,10 @@ const onDeactivateAllMocks = () => {
             {{ option.title }}
           </option>
         </select>
+        {{ optionSelected(mock.title) }}
       </div>
     </form>
   </div>
-  {{ listMock }}
 
   <hr />
 

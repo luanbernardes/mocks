@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineProps, ref } from 'vue'
 import { GroupMockDebug } from '@types'
 import SelectMockContainer from './SelectMockContainer.vue'
 

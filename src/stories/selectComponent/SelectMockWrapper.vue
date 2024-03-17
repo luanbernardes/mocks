@@ -1,8 +1,31 @@
 <template>
-  <button type="button" class="storybook-button" @click="onClick">
-    make real request
+  <button
+    type="button"
+    class="storybook-button"
+    @click="onClick('/mock-test-MSW-a')"
+  >
+    /mock-test-MSW-a
   </button>
 
+  <br />
+
+  <button
+    type="button"
+    class="storybook-button"
+    @click="onClick('/mock-test-MSW-b')"
+  >
+    /mock-test-MSW-b
+  </button>
+
+  <br />
+
+  <button
+    type="button"
+    class="storybook-button"
+    @click="onClick('/mock-test-MSW-2')"
+  >
+    /mock-test-MSW-2
+  </button>
   <br />
   <br />
 
@@ -21,14 +44,12 @@ import { ref } from 'vue'
 
 const response = ref<InstanceType<any>>(undefined)
 
-const onClick = () => {
-  fetch('/mock-test-MSW', {
+const onClick = (path) => {
+  fetch(path, {
     method: 'GET'
   }).then(async (r) => {
     const responseJson = await r.json()
     response.value = JSON.stringify(responseJson, undefined, 2)
-
-    console.log(responseJson)
   })
 }
 </script>
@@ -45,7 +66,7 @@ const onClick = () => {
 
   color: #333;
   background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
 
   font-size: 14px;
   padding: 11px 20px;

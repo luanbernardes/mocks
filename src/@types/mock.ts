@@ -30,8 +30,11 @@ export enum ActiveMockService {
 
 export interface localStorageMock {
   [key: string]: {
-    data: {}
-    mockTitle: string
-    optionSelected: string
+    // list title
+    [key: string]: {
+      // mock title
+      data: {}
+      optionSelected: string
+    }
   }
 }
