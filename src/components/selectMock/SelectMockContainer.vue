@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { defineProps, ref, onMounted } from 'vue'
 import { GroupMockDebug, localStorageMock } from '@types'
-import { addListMock, clear, getListMock, setActiveMock } from '@services'
+import { addListMock, clear, getListMockParsed, setActiveMock } from '@services'
 
 const { mockDebugList } = defineProps<{ mockDebugList: GroupMockDebug[] }>()
 let listMock = ref<InstanceType<localStorageMock>>({})
 
 onMounted(() => {
-  listMock.value = JSON.parse(getListMock())
+  listMock.value = getListMockParsed()
 })
 
 // FUNCTIONS
@@ -43,7 +43,6 @@ const onChange = (e: Event, listTitle, mock) => {
 }
 
 const optionSelected = (listTitle, mockTitle) => {
-  console.log(listMock.value.data, listTitle, mockTitle)
   return listMock.value[listTitle]?.[mockTitle]?.optionSelected
 }
 
@@ -75,7 +74,6 @@ const onDeactivateAllMocks = () => {
             {{ option.title }}
           </option>
         </select>
-        {{ optionSelected(mock.title) }}
       </div>
     </form>
   </div>
