@@ -39,7 +39,6 @@ export function createHandler(groupMockDebugs: GroupMockDebug[]) {
           const findOption = mockDebug.options.find((v) => {
             return v.id === value[mockDebug.title].optionSelected
           })
-          // console.log({ findOption })
           if (findOption) {
             allHandlers.push(
               createRestHandler(
@@ -55,6 +54,5 @@ export function createHandler(groupMockDebugs: GroupMockDebug[]) {
     }
   })
 
-  // console.log(allHandlers)
   return allHandlers
 }
