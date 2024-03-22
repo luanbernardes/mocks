@@ -15,12 +15,13 @@
   },
   "dependencies": {
     "@antfu/eslint-config": "^2.6.4",
+    "@vue/test-utils": "^2.4.5",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.21.1",
     "prettier": "^3.2.5",
     "vite-plugin-eslint": "^1.8.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.17",
