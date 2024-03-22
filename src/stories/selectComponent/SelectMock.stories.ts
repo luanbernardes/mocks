@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import SelectMock from '../../components/selectMock/SelectMockContainer.vue'
 import SelectMockWrapper from './SelectMockWrapper.vue'
-import { groupMockDebugsMock } from '../../@mocks/groupMockDebugsMock.ts'
+import { groupMockDebugsMock } from '@mocks'
 
 const meta = {
   title: 'SelectMock',

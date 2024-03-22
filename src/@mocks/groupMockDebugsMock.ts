@@ -6,8 +6,8 @@ export const groupMockDebugsMock: GroupMockDebug[] = [
     type: 'request',
     list: [
       {
-        title: 'mock-test-MSW',
-        path: '/mock-test-MSW',
+        title: 'mock-test-MSW-a',
+        path: '/mock-test-MSW-a',
         method: 'get',
         delay: 1000,
         type: 'request',
@@ -28,6 +28,21 @@ export const groupMockDebugsMock: GroupMockDebug[] = [
             data: 'value error mocked'
           }
         ]
+      },
+      {
+        title: 'mock-test-MSW-b',
+        path: '/mock-test-MSW-b',
+        method: 'get',
+        delay: 1000,
+        type: 'request',
+        options: [
+          {
+            id: 'mock-test-error',
+            title: 'mock - error 400',
+            status: 400,
+            data: 'value error mocked'
+          }
+        ]
       }
     ]
   },
@@ -37,14 +52,14 @@ export const groupMockDebugsMock: GroupMockDebug[] = [
     list: [
       {
         title: 'mock-test-MSW-2',
-        path: '/mock-test-MSW',
+        path: '/mock-test-MSW-2',
         method: 'get',
         delay: 1000,
         type: 'request',
         options: [
           {
             id: 'mock-test-success-2',
-            title: 'mock - success',
+            title: 'mock - success - 2',
             status: 200,
             data: {
               test: 'mocked 123qwe',
@@ -53,7 +68,7 @@ export const groupMockDebugsMock: GroupMockDebug[] = [
           },
           {
             id: 'mock-test-error-2',
-            title: 'mock - error 400',
+            title: 'mock - error 400 - 2',
             status: 400,
             data: 'mocked error'
           }
