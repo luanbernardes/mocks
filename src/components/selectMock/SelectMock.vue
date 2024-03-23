@@ -1,19 +1,5 @@
-<template>
-  <div class="root" :class="showComponent ? 'active' : ''">
-    <button
-      class="button"
-      :class="showComponent ? 'active' : ''"
-      @click="toggleComponent"
-    >
-      <
-    </button>
-
-    <SelectMockContainer :mock-debug-list="mockDebugList" />
-  </div>
-</template>
-
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import { GroupMockDebug } from '@types'
 import SelectMockContainer from './SelectMockContainer.vue'
 
@@ -26,8 +12,22 @@ function toggleComponent() {
 }
 </script>
 
+<template>
+  <div class="select-mock__root" :class="showComponent ? 'active' : ''">
+    <button
+      class="select-mock__button"
+      :class="showComponent ? 'active' : ''"
+      @click="toggleComponent"
+    >
+      <
+    </button>
+
+    <SelectMockContainer :mock-debug-list="mockDebugList" />
+  </div>
+</template>
+
 <style scoped>
-.root {
+.select-mock__root {
   position: fixed;
   box-sizing: border-box;
   z-index: 99999;
@@ -44,7 +44,7 @@ function toggleComponent() {
   }
 }
 
-.button {
+.select-mock__button {
   border: 0;
   padding: 0;
   height: 30px;
