@@ -2,45 +2,30 @@ import { GroupMockDebug } from '@types'
 
 export const groupMockDebugsMock: GroupMockDebug[] = [
   {
-    title: 'test MSW',
+    title: 'test MSW - 1',
     type: 'request',
     list: [
       {
-        title: 'mock-test-MSW-a',
-        path: '/mock-test-MSW-a',
+        title: 'mock-test-MSW-1',
+        path: '/mock-test-MSW-1',
         method: 'get',
         delay: 1000,
         type: 'request',
         options: [
           {
-            id: 'mock-test-success',
-            title: 'mock - success',
+            id: 'mock-test-success-1',
+            title: 'mock - success - 1',
             status: 200,
             data: {
-              test: 'value success mocked',
-              test2: 'another values'
+              test: 'mocked 123qwe',
+              test2: '456rty'
             }
           },
           {
-            id: 'mock-test-error',
-            title: 'mock - error 400',
+            id: 'mock-test-error-1',
+            title: 'mock - error 400 - 1',
             status: 400,
-            data: 'value error mocked'
-          }
-        ]
-      },
-      {
-        title: 'mock-test-MSW-b',
-        path: '/mock-test-MSW-b',
-        method: 'get',
-        delay: 1000,
-        type: 'request',
-        options: [
-          {
-            id: 'mock-test-error',
-            title: 'mock - error 400',
-            status: 400,
-            data: 'value error mocked'
+            data: 'mocked error'
           }
         ]
       }

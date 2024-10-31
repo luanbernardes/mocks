@@ -2,19 +2,9 @@
   <button
     type="button"
     class="storybook-button"
-    @click="onClick('/mock-test-MSW-a')"
+    @click="onClick('/mock-test-MSW-1')"
   >
-    /mock-test-MSW-a
-  </button>
-
-  <br />
-
-  <button
-    type="button"
-    class="storybook-button"
-    @click="onClick('/mock-test-MSW-b')"
-  >
-    /mock-test-MSW-b
+    /mock-test-MSW-1
   </button>
 
   <br />
@@ -41,10 +31,14 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { initMockServiceWorker } from '../../config'
+import { groupMockDebugsMock } from '@mocks'
+
+initMockServiceWorker(groupMockDebugsMock)
 
 const response = ref<InstanceType<any>>(undefined)
 
-const onClick = (path) => {
+const onClick = (path: string) => {
   fetch(path, {
     method: 'GET'
   }).then(async (r) => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, toRaw } from 'vue'
-import { GroupMockDebug, localStorageMock } from '@types'
+import { ref, onMounted } from 'vue'
+import { GroupMockDebug, localStorageMock, MockDebug } from '@types'
 import { addListMock, clear, getListMockParsed, setActiveMock } from '@services'
 
 const { mockDebugList } = defineProps<{ mockDebugList: GroupMockDebug[] }>()
@@ -11,7 +11,7 @@ onMounted(() => {
 })
 
 // FUNCTIONS
-const onChange = (e: Event, listTitle, mock) => {
+const onChange = (e: Event, listTitle: string, mock: MockDebug) => {
   const target = e.target as HTMLSelectElement
   const targetValue = target.value
   const mockTitle = mock.title
@@ -29,20 +29,17 @@ const onChange = (e: Event, listTitle, mock) => {
     }
   }
 
-  // TODO create function delete
   // when select '' remove mock
   if (targetValue === '') {
     delete localStorageValue[listTitle][mockTitle]
   }
-
-  // console.log({ localStorageValue })
 
   listMock.value = localStorageValue
   setActiveMock()
   addListMock(localStorageValue as any)
 }
 
-const optionSelected = (listTitle, mockTitle) => {
+const optionSelected = (listTitle: string, mockTitle: string) => {
   return listMock.value[listTitle]?.[mockTitle]?.optionSelected
 }
 
@@ -57,7 +54,7 @@ const onDeactivateAllMocks = () => {
 </script>
 
 <template>
-  <div v-for="mockDebugItem in mockDebugList">
+  <div class="selectMockContainer" v-for="mockDebugItem in mockDebugList">
     <h2>{{ mockDebugItem.title }}</h2>
 
     <form>

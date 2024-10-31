@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import SelectMock from '../../components/selectMock/SelectMockContainer.vue'
+import SelectMock from '../../components/selectMock/SelectMock.vue'
 import SelectMockWrapper from './SelectMockWrapper.vue'
 import { groupMockDebugsMock } from '@mocks'
 
 const meta = {
   title: 'SelectMock',
   component: SelectMock
-  // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
-  // tags: ['autodocs'],
 } satisfies Meta<typeof SelectMock>
 
 export default meta
